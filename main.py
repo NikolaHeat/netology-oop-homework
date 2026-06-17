@@ -28,8 +28,8 @@ class Student:
         return f'''Имя: {self.name}
 Фамилия: {self.surname}
 Средняя оценка за домашние задания: {self.average_grade()}
-Курсы в процессе изучения: {", ".join(self.courses_in_progress)}
-Завершенные курсы: {", ".join(self.finished_courses)}'''
+Курсы в процессе изучения: {', '.join(self.courses_in_progress)}
+Завершенные курсы: {', '.join(self.finished_courses)}'''
 
     def __lt__(self, other):
         return self.average_grade() < other.average_grade()
@@ -119,6 +119,7 @@ reviewer1.courses_attached += ['Python']
 reviewer2 = Reviewer('Anna', 'Ivanova')
 reviewer2.courses_attached += ['Python']
 
+
 student1.rate_lecture(lecturer1, 'Python', 10)
 student1.rate_lecture(lecturer1, 'Python', 9)
 
@@ -131,6 +132,7 @@ reviewer1.rate_hw(student1, 'Python', 9)
 reviewer2.rate_hw(student2, 'Python', 8)
 reviewer2.rate_hw(student2, 'Python', 9)
 
+
 print(reviewer1)
 print()
 print(lecturer1)
@@ -141,8 +143,20 @@ print()
 print(student1 > student2)
 print(lecturer1 > lecturer2)
 
+print()
+
 students = [student1, student2]
 lecturers = [lecturer1, lecturer2]
 
 print('Средняя оценка студентов по Python:', average_student_grade(students, 'Python'))
 print('Средняя оценка лекторов по Python:', average_lecturer_grade(lecturers, 'Python'))
+
+print()
+
+print('Попытка студента оценить лектора не по своему курсу:')
+print(student1.rate_lecture(lecturer2, 'Git', 10))
+
+print()
+
+print('Попытка эксперта оценить студента не по своему курсу:')
+print(reviewer1.rate_hw(student2, 'Git', 10))
